@@ -25,9 +25,10 @@
 
 ---
 
-## 2. 快速开始
+## 2. 快速开始(可直接下载后打开index.html，数据保存在浏览器，更换浏览器或清除缓存数据丢失)
 
 ```bash
+想要不丢失数据，按以下操作，需要运行一个服务，打开后注册登入（数据保存本地 sqlite文件）
 cd hcia-platform
 npm install          # 只装 better-sqlite3 和 pm2
 node server.js       # 默认 http://127.0.0.1:8787
