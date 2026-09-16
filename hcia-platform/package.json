@@ -1,0 +1,16 @@
+{
+  "name": "hcia-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HCIA-AI Solution 题库刷题平台（含账号体系与 SQLite 进度存储）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "validate": "node validate.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "pm2": "^7.0.4"
+  }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="dKXHHb94GebOvN5oRebn8x">
+<head data-page-node-id="8TzK2Ht9wBejp3CeNfu2PP">
+<meta charset="UTF-8" data-page-node-id="A1rmXjBeNspopcabINrphd">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" data-page-node-id="tCeOsK3vjEPWBWyPvDEds2">
+<title>HCIA-AI Solution 题库刷题平台</title>
+<link rel="stylesheet" href="assets/css/style.css" data-page-node-id="sBYJp1o9jvmCLYxssRzdFf">
+<link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body data-page-node-id="G7kbAKBBJXVzMQcddfOgQO">
+<div id="app" data-page-node-id="jfcYVtfUjlzSXLIIg0JN18">
+  <!-- 侧边栏 -->
+  <aside class="sidebar" id="sidebar" data-page-node-id="ecba8dy8gjK4EtTBew1vWN">
+    <div class="brand" data-page-node-id="qX2o3jymSprZhP5g2UZ6dC">
+      <div class="brand-logo" data-page-node-id="UEo9X6VrE7EcHycgpRn8nX">HCIA</div>
+      <div class="brand-text" data-page-node-id="MEwyIMpcTOAlDF8mgQIA7E">
+        <strong data-page-node-id="ClZlXGAtsMDI6xU1Ruh4aG">HCIA-AI Solution</strong>
+        <span data-page-node-id="Zubhce70XFNfabjlo9OKim">题库刷题平台 V1.0</span>
+      </div>
+    </div>
+    <nav class="nav" data-page-node-id="8xmcBlw1Rjm1MXDWZsDrQo">
+      <a class="nav-item active" data-view="home" data-page-node-id="VPA5Iw3afp6wY7cBzpIVDz"><i class="ic ic-home" data-page-node-id="SISTaS3OKAA8WgdMhukeEU"></i>首页看板</a>
+      <a class="nav-item" data-view="practice" data-page-node-id="SF9Nwg5WNub0fokpgMt875"><i class="ic ic-practice" data-page-node-id="yO2tg86Saa5BQCapuSFlf1"></i>练习模式</a>
+      <a class="nav-item" data-view="exam" data-page-node-id="coYYqsrXr8LbmChgDkF5ON"><i class="ic ic-exam" data-page-node-id="gwZOuDmStlvADcgrEZFJgf"></i>模拟考试</a>
+      <a class="nav-item" data-view="wrong" data-page-node-id="DCeY4kbUnrQP3j7Zb3b3pG"><i class="ic ic-wrong" data-page-node-id="789EYAxA2l9kE6p7FjPecL"></i>错题本<span class="badge" id="badgeWrong" data-page-node-id="6s4WSmUvXN7auVIqe65C5i">0</span></a>
+      <a class="nav-item" data-view="fav" data-page-node-id="YSCWFAGFYyJkz86X8HzKeV"><i class="ic ic-fav" data-page-node-id="SBOaINg4XvQDA4qc0z2rvc"></i>收藏夹<span class="badge" id="badgeFav" data-page-node-id="mMbIsEe55VYDqosjXk6NOU">0</span></a>
+      <a class="nav-item" data-view="browse" data-page-node-id="PdSpgX38IFShFc7rbFWCEl"><i class="ic ic-browse" data-page-node-id="VTgaVqBqa3zQAZPmVeVCBE"></i>题库浏览</a>
+      <a class="nav-item" data-view="records" data-page-node-id="3S1TTLVAYVCL0GfwiVzrRd"><i class="ic ic-rec" data-page-node-id="HD3rn4GRTAKtYSJtqWuzRE"></i>考试记录</a>
+    </nav>
+    <div class="side-foot" data-page-node-id="mqaoUUbFeBPQ8Y38mawHlI">
+      <button class="btn-ghost" id="btnTheme" data-page-node-id="p9GW0n8FkEwhMNBsLC3fyV"><span id="themeIcon" data-page-node-id="YJObXXNPoXysQlMDIFNrVF">🌙</span> <span id="themeText" data-page-node-id="PCSGWPsHeVUECVAIsmydCp">夜间模式</span></button>
+      <button class="btn-ghost danger" id="btnReset" data-page-node-id="9MwPYoVlBAXM190vnJCA4m">清空学习记录</button>
+      <div class="side-tip" data-page-node-id="QdKrPpYMJh2FAS3Ht25WIU">登录后进度存于服务端 SQLite，可跨浏览器 / 设备同步</div>
+    </div>
+  </aside>
+
+  <!-- 主区 -->
+  <main class="main" data-page-node-id="HZERQO84wjNBdhqUMFdflF">
+    <header class="topbar" data-page-node-id="ultOyB7MVxRM8F9FPFj2WZ">
+      <button class="menu-btn" id="btnMenu" data-page-node-id="JZdNtjkBerS9Omf6Exbn2A">☰</button>
+      <div class="topbar-title" id="viewTitle" data-page-node-id="qkZ8HhLHD5iHdYf4Hu3TyG">首页看板</div>
+      <div class="topbar-right" data-page-node-id="gJpfqD7QH8wEdZZpTLG5Kb">
+        <span class="chip" id="chipTotal" data-page-node-id="H8xJpQqlwlZ8EbBsOw7BtK">题库 0 题</span>
+        <div id="userBox" class="user-box" data-page-node-id="ub001"></div>
+      </div>
+    </header>
+
+    <div class="content" id="content" data-page-node-id="0pxiGjXePQ9bFGdR3CkWhO"></div>
+  </main>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="toast-wrap" id="toastWrap" data-page-node-id="C8qUm5IGlv8SoCNAiIlIcN"></div>
+
+<!-- 数据 -->
+<script src="assets/js/data/ch1.js"></script>
+<script src="assets/js/data/ch2.js"></script>
+<script src="assets/js/data/ch3.js"></script>
+<script src="assets/js/data/ch4.js"></script>
+<script src="assets/js/data/ch5.js"></script>
+<script src="assets/js/data/ch6.js"></script>
+<script src="assets/js/data/ch7.js"></script>
+<script src="assets/js/data/ch8.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
