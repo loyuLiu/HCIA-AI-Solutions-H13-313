@@ -280,6 +280,7 @@
     else if (view === "fav") c.innerHTML = viewList("fav");
     else if (view === "browse") c.innerHTML = viewBrowse();
     else if (view === "records") c.innerHTML = recOpen === null ? viewRecords() : viewRecordDetail(recOpen);
+    else if (view === "outline") c.innerHTML = viewOutline();
     bindDynamic();
 
     // 还原题卡滚动位置；只有「切了题」时才把新当前题带进视野（答题、收藏等原地不动）
@@ -1050,6 +1051,33 @@
     return h;
   }
 
+  /* ================= 课程总纲（assets/img/总纲.png） ================= */
+  var OUTLINE_SRC = "assets/img/" + encodeURIComponent("总纲.png");
+  var outlineScale = 100;      // 图片显示比例（%）
+
+  function applyOutlineScale() {
+    var im = $("#outlineImg"), lb = $("#outlineScale");
+    if (im) im.style.width = outlineScale + "%";
+    if (lb) lb.textContent = outlineScale + "%";
+  }
+  function viewOutline() {
+    var h = "";
+    h += '<div class="card card-pad outline-bar">';
+    h += "<div><strong>课程总纲</strong>　<span class='muted'>HCIA-AI Solution V1.0 知识体系全景图</span></div>";
+    h += '<div class="spacer" style="flex:1"></div>';
+    h += '<button class="btn btn-outline btn-sm" data-act="outline-zoom" data-arg="-1" title="缩小">－</button>';
+    h += '<span id="outlineScale" class="muted" style="min-width:46px;text-align:center">' + outlineScale + "%</span>";
+    h += '<button class="btn btn-outline btn-sm" data-act="outline-zoom" data-arg="1" title="放大">＋</button>';
+    h += '<button class="btn btn-outline btn-sm" data-act="outline-fit">适应宽度</button>';
+    h += '<a class="btn btn-sm" href="' + OUTLINE_SRC + '" target="_blank" rel="noopener">新窗口查看原图</a>';
+    h += "</div>";
+    h += '<div class="card card-pad outline-wrap">';
+    h += '<img id="outlineImg" class="outline-img" src="' + OUTLINE_SRC + '" alt="课程总纲" style="width:' + outlineScale + '%">';
+    h += '<div id="outlineErr" class="muted" style="display:none">图片未能加载（assets/img/总纲.png 不存在）</div>';
+    h += "</div>";
+    return h;
+  }
+
   /* ================= 考试记录 · 详情 =================
      详情页直接读 store.records[i] 渲染，不占用全局答题状态 S，
      因此旧版本记录（没有题目快照）也能正常显示总分信息。 */
@@ -1212,6 +1240,14 @@
     $$("[data-act]").forEach(function (el) {
       el.onclick = function () { action(this.dataset.act, this.dataset.arg); };
     });
+    // 总纲图片加载失败时给出提示（而不是留下一个破图图标）
+    var oi = $("#outlineImg");
+    if (oi) {
+      oi.onerror = function () {
+        this.style.display = "none";
+        var e = $("#outlineErr"); if (e) e.style.display = "block";
+      };
+    }
     // 搜索框回车
     var kw = $("#kw");
     if (kw) kw.onkeydown = function (e) { if (e.key === "Enter") { browse.kw = this.value; render(); } };
@@ -1342,11 +1378,16 @@
         if (!S.list.length) { toast("旧版本记录没有题目快照，无法逐题回顾", "err"); break; }
         S.reviewing = true; render(); window.scrollTo(0, 0); break;
       case "back-result": S.reviewing = false; render(); window.scrollTo(0, 0); break;
+      case "outline-zoom":
+        outlineScale = Math.max(50, Math.min(300, outlineScale + parseInt(arg, 10) * 25));
+        applyOutlineScale(); break;          // 只改图片宽度，不整页 render，避免图片重新加载闪烁
+      case "outline-fit":
+        outlineScale = 100; applyOutlineScale(); break;
     }
   }
 
   function navTitle(v) {
-    return { home: "首页看板", practice: "练习模式", exam: "模拟考试", wrong: "错题本", fav: "收藏夹", browse: "题库浏览", records: "考试记录" }[v] || "首页看板";
+    return { home: "首页看板", practice: "练习模式", exam: "模拟考试", wrong: "错题本", fav: "收藏夹", browse: "题库浏览", records: "考试记录", outline: "课程总纲" }[v] || "首页看板";
   }
 
   /* ================= 流程控制 ================= */
